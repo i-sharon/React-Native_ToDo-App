@@ -9,17 +9,14 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  useColorScheme,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-
-
 
 const App = () => {
   const [todos, setTodos] = React.useState([]);
   const [textInput, setTextInput] = React.useState('');
 
-  
   const addTodo = () => {
     if (textInput == '') {
       Alert.alert('Error', 'Please input todo');
@@ -33,9 +30,6 @@ const App = () => {
       setTextInput('');
     }
   };
-
-
-
 
   const markTodoComplete = todoId => {
     const newTodosItem = todos.map(item => {
@@ -52,8 +46,6 @@ const App = () => {
     const newTodosItem = todos.filter(item => item.id != todoId);
     setTodos(newTodosItem);
   };
-
-  
 
   const ListItem = ({todo}) => {
     return (
@@ -79,7 +71,7 @@ const App = () => {
         )}
         <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
           <View style={styles.actionIcon}>
-            <Icon name="delete" size={25} color="white" />
+            <Icon name="delete" size={25} color={COLORS.white} />
           </View>
         </TouchableOpacity>
       </View>
@@ -98,8 +90,6 @@ const App = () => {
            <Text
              style={{fontWeight: 'bold', fontSize: 22, color: COLORS.secondary}}>
              TODO          </Text>
-
-
       </View>
   
       <FlatList
@@ -119,14 +109,12 @@ const App = () => {
         </View>
         <TouchableOpacity onPress={addTodo}>
           <View style={styles.iconContainer}>
-            <Icon name="add" color="white" size={30} />
+            <Icon name="add" color={COLORS.white} size={30} />
           </View>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
-
-
 
 export default App;
